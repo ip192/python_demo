@@ -12,7 +12,7 @@ from email.mime.text import MIMEText
 
 def send(m_target = '996519916@qq.com', m_content = 'send by python', m_title = 'error message'):
     from_address = '940778304@qq.com'
-    from_pass = 'bdrtrnotoxodbfej'
+    from_pass = 'bdrtrnotoxodbfej' # 也不会有人看 就提交了吧
     smtp_server = 'smtp.qq.com'
     _target = m_target
     _content = m_content
