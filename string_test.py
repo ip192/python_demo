@@ -11,6 +11,15 @@ import func_test as func
 # print('first', 'second', 'third')
 
 
-person(age = 23, name = 'wp')
-print(dir(func))
+str1 = ('first line'
+      'second line'
+      'third line')
+print(str1)
+
+str2 = '''
+first line
+second line
+third line
+'''
+print(str2)
 
