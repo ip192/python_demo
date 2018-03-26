@@ -14,11 +14,17 @@ window.geometry('500' + 'x' + '500' + '+300+300')
 # sb.pack(side = tk.RIGHT, fill = tk.Y)
 
 
-lb = tk.Listbox(window, width = '200', height = '200')
 cmd = RunShell()
+
+lb = tk.Listbox(window, height='20') # height指的是垂直方向有多少item
 for item in cmd.ls_l():
     lb.insert(tk.END, item)
 lb.pack()
+
+btn = tk.Button(window, text='后退')
+btn.pack()
+
+
 
 def click(event):
     click_item = lb.get(lb.curselection())
@@ -27,8 +33,17 @@ def click(event):
     for it in cmd.ls_l():
         lb.insert(tk.END, it)
 
+def back(event):
+    lb.delete(0, lb.size())
+    cmd.cd_to('../')
+    for it in cmd.ls_l():
+        lb.insert(tk.END, it)
+
 lb.bind('<Double-Button-1>', click)
-# make_btn(window, ['后退', '进入', '新建'])
+
+btn.bind('<Button-1>', back)
+
+
 
 
 window.mainloop()
