@@ -1,19 +1,32 @@
 from send_err_email import send
 
-# send('w_angpeng@sina.cn', 'error found by python')
-import level
-level
 
-out = 'outer'
+class Person:
 
-def person(name, age):
-    print(out)
-    print(name, age)
+    def info(self):
+        print('person info')
 
 
-# def normal(normal1, normal2):
-#     print(normal1, normal2)
-# normal(normal2 = '1', normal1='2')
+p = Person()
+p.info()
+p.name = 'ip192'
+print(p.name)
+Person.name = 'ip193'
+print(Person.name, p.name)
 
+print()
+class Man:
+    __slots__ = ('name', )
 
-print(__name__)
+    def info(self):
+        print('person info')
+
+m = Man()
+m.name = 'man'
+print(m.name)
+Man.name = 'Man'
+print(Man.name)
+
+# m.age = 24
+Man.age = 24
+print(Man.age)

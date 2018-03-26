@@ -1,6 +1,7 @@
 
 __all__ = [
-    'level_print'
+    'level_print',
+    'ClassTest'
 ]
 
 def __init__():

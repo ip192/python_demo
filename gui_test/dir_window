@@ -1,9 +1,8 @@
 #!/usr/local/bin/python3
 import tkinter as tk
-from gui_test.label_factory import make_label
-from gui_test.list_box import list_box
-from gui_test.btn_factory import make_btn
-from gui_test.run_shells import ls_l
+from gui_test.run_shells import RunShell
+# from gui_test.btn_factory import make_btn
+
 
 
 window = tk.Tk()
@@ -15,9 +14,21 @@ window.geometry('500' + 'x' + '500' + '+300+300')
 # sb.pack(side = tk.RIGHT, fill = tk.Y)
 
 
-# make_label(window, ls_l())
-list_box(window, ls_l())
-make_btn(window, ['后退', '进入', '新建'])
+lb = tk.Listbox(window, width = '200', height = '200')
+cmd = RunShell()
+for item in cmd.ls_l():
+    lb.insert(tk.END, item)
+lb.pack()
+
+def click(event):
+    click_item = lb.get(lb.curselection())
+    lb.delete(0, lb.size())
+    cmd.cd_to(click_item)
+    for it in cmd.ls_l():
+        lb.insert(tk.END, it)
+
+lb.bind('<Double-Button-1>', click)
+# make_btn(window, ['后退', '进入', '新建'])
 
 
 window.mainloop()

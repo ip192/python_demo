@@ -1,8 +1,6 @@
 
+class Level:
+    def out(self):
+        print('level out')
 
-print('level_print')
-
-out_param = 'out params'
-def out_fun():
-    print('out function')
 

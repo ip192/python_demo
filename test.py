@@ -4,7 +4,25 @@
 # from level import level_print
 # level_print
 
-import level.level_print as le
+from level.ClassTest import *
+from level.level_print import *
 
-print(le.out_param)
-le.out_fun()
+
+# print(le.out_param)
+# le.out_fun()
+
+a = [1, 2, 3]
+b = ['a', 'b', 'c', 'd']
+c = map(lambda x,y: str(x) + y, a, b)
+# for i in c:
+    # print(i)
+
+# print('first: %c, second: %c' % ('a', 'b'))
+# print('first: %s, second: %s' % ('aa', 'ba'))
+
+
+def use_out(out):
+    out.out()
+
+use_out(ClassTest('ip192'))
+use_out(Level())

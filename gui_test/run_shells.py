@@ -24,6 +24,9 @@ class RunShell:
         p_ls.kill()
         return self.str_to_arr(dir_list)
 
+    '''
+    在当前目录下的操作: 去某子目录/返回上级
+    '''
     def cd_to(self, _dir):
         cmd = 'cd ' + self.curr_dir + ' && cd ' + _dir + ' && pwd'
         _cd = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -35,16 +38,44 @@ class RunShell:
         return self.curr_dir
 
 
+    # name参数的长度大于1, 外部判断
+    # 先实现1级目录
+    def create(self, name):
+        params = name.split('/')
+        if params[len(params) - 1] == '': # 创建目录
+            for param in params:
+                if param == '': continue
+                self.__make_dir(self.curr_dir + '/' + param)
+            # pa = filter(lambda p: p != '', params)
+            # self.__make_file()
+        else: # 创建文件
+            pass
+            for param in params:
+                if param == '': continue
+                self.__make_file(self.curr_dir + '/' + param)
+            # if name.index('/') == len(name) - 1:
+            #     self.__make_dir(name)
+            # else:
+            #     self.__make_file(name)
+
+    def __make_dir(self, dir_name):
+        cmd = 'mkdir ' + dir_name
+        print(cmd)
+        subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+
+    def __make_file(self, file_name):
+        cmd = 'touch ' + file_name
+        print(cmd)
+        subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+
+
+
 
 if __name__ == '__main__':
     shell = RunShell()
-    print(shell.ls_l())
-    shell.cd_to('Downloads')
     print(shell.curr_dir)
-    print(shell.ls_l())
-    shell.cd_to('shells')
+    shell.cd_to('Downloads/shells')
     print(shell.curr_dir)
-    print(shell.ls_l())
-    shell.cd_to('..')
-    print(shell.curr_dir)
-    print(shell.ls_l())
+
+    # create
+    shell.create('ttestt.txt')
